@@ -17,7 +17,7 @@ const SignInForm: React.VFC = () => {
 	const submitSignIn = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		signInWithEmailAndPassword(auth, email, ps)
-			.then(() => {
+			.then((user) => {
 				console.log("sign in");
 			})
 			.catch((err) => {
