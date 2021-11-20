@@ -7,13 +7,14 @@ const Home: React.VFC = () => {
 		return (
 			<div>
 				<h2>Welcome to React auth</h2>
-				<p>{currentUser.uid}</p>
+				<p>current status : online!</p>
 			</div>
 		);
 	} else {
 		return (
 			<div>
 				<h2>Welcome to React auth</h2>
+				<p>current status : offline!</p>
 			</div>
 		);
 	}
