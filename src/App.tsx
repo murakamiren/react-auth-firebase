@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+import SignOut from "./components/SignOut";
 import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
 import SingIn from "./pages/SingIn";
@@ -16,6 +17,7 @@ const App: React.VFC = () => {
 			<Link to="/signin">
 				<input type="button" value="sing in" />
 			</Link>
+			<SignOut />
 			<Routes>
 				<Route path="/" element={<Home />} />
 				<Route path="/signup" element={<SignUp />} />
