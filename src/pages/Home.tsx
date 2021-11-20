@@ -14,7 +14,7 @@ const Home: React.VFC = () => {
 		return (
 			<div>
 				<h2>Welcome to React auth</h2>
-				<p>current status : offline!</p>
+				<p>current status : offline</p>
 			</div>
 		);
 	}
