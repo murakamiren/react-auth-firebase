@@ -4,8 +4,13 @@ import { auth, firestore } from "../firebase";
 import { setDoc, doc } from "@firebase/firestore";
 
 const SignUpForm: React.VFC = () => {
+	const [username, setUsername] = useState("");
 	const [email, setEmail] = useState("");
 	const [ps, setPs] = useState("");
+
+	const handleUsername = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setUsername(() => e.target.value);
+	};
 
 	const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setEmail(() => e.target.value);
@@ -25,7 +30,7 @@ const SignUpForm: React.VFC = () => {
 			.then((u) => {
 				setDoc(doc(firestore, "users", u.user.uid), {
 					userId: u.user.uid,
-					displayName: "unko-daisuki",
+					displayName: username,
 				});
 			})
 			.catch((err) => {
@@ -35,6 +40,10 @@ const SignUpForm: React.VFC = () => {
 
 	return (
 		<form onSubmit={submitSignUp}>
+			<div>
+				<label htmlFor="username">username</label>
+				<input type="text" id="email" onChange={handleUsername} />
+			</div>
 			<div>
 				<label htmlFor="email">email</label>
 				<input type="email" id="email" onChange={handleEmail} />
