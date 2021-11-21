@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "@firebase/auth";
-import { auth } from "../firebase";
+import { auth, firestore } from "../firebase";
+import { setDoc, doc } from "@firebase/firestore";
 
 const SignUpForm: React.VFC = () => {
 	const [email, setEmail] = useState("");
@@ -17,8 +18,15 @@ const SignUpForm: React.VFC = () => {
 	const submitSignUp = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		createUserWithEmailAndPassword(auth, email, ps)
-			.then(() => {
+			.then((user) => {
 				console.log("success");
+				return user;
+			})
+			.then((u) => {
+				setDoc(doc(firestore, "users", u.user.uid), {
+					userId: u.user.uid,
+					displayName: "unko-daisuki",
+				});
 			})
 			.catch((err) => {
 				console.log(err.message);
